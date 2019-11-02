@@ -18,7 +18,7 @@ cp -R x11-themes/ /usr/ports/x11-themes/
 Enter the port directory and modify the makefile version
 
 ```
-edit /usr/ports/x11-themes/
+edit /usr/ports/x11-themes/furybsd-artwork/Makefile
 ```
 
 Update the dist info
@@ -52,5 +52,5 @@ cd /usr/ports/x11/themes/furybsd-artwork && portlint
 Copy the ports back to git repo as your user not root
 
 ```
-cp -R /usr/ports/x11-themes/ghostbsd-artwork/ ~/Projects/furybsd/furybsd-artwork/x11-themes/ghostbsd-artwork/
+cp -R /usr/ports/x11-themes/furybsd-artwork/ ~/Projects/furybsd/furybsd-artwork/x11-themes/furybsd-artwork/
 ```
