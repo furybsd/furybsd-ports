@@ -1,6 +1,6 @@
 # $FreeBSD$
 
-PORTNAME=	furybsd-artwork
+PORTNAME=	furybsd-wallpapers
 PORTVERSION=	%%CHGVERSION%%
 CATEGORIES=	x11-themes
 
@@ -11,13 +11,13 @@ LICENSE=	BSD
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	furybsd
-GH_PROJECT=	furybsd-artwork
+GH_PROJECT=	furybsd-wallpapers
 GH_TAGNAME=	%%GHTAG%%
 
 NO_BUILD=	yes
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/backgrounds/furybsd
-	${CP} -PR ${WRKSRC}/wallpapers/*.jpg ${STAGEDIR}${PREFIX}/share/backgrounds/furybsd
-	${CP} -PR ${WRKSRC}/wallpapers/*.png ${STAGEDIR}${PREFIX}/share/backgrounds/furybsd
+	${CP} -PR ${WRKSRC}/*.jpg ${STAGEDIR}${PREFIX}/share/backgrounds/furybsd
+	${CP} -PR ${WRKSRC}/*.png ${STAGEDIR}${PREFIX}/share/backgrounds/furybsd
 .include <bsd.port.mk>
