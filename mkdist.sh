@@ -44,9 +44,16 @@ fi
 
 # Create the package plist
 cd "/usr/ports/${port}"
-make makeplist > /usr/ports/${port}/pkg-plist
+make makeplist > pkg-plist
 if [ $? -ne 0 ] ; then
-  echo "Failed makesum"
+  echo "Failed makeplist"
   exit 1
 fi
-cat /usr/ports/${port}/pkg-plist
+sed 1,/you/d pkg-plist >> pkg-plist.fixed
+mv pkg-plist.fixed pkg-plist
+
+make clean
+if [ $? -ne 0 ] ; then
+  echo "Failed make clean"
+  exit 1
+fi
