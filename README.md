@@ -12,5 +12,5 @@ portsnap fetch extract
 Run the mkports.sh script to generate a port from this repo into /usr/ports:
 
 ```
-./mkports.sh x11-themes/furybsd-wallpapers
+./mkport.sh x11-themes/furybsd-wallpapers
 ```
