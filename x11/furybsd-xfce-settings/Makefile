@@ -2,7 +2,7 @@
 
 PORTNAME=	furybsd-xfce-settings
 PORTVERSION=	%%CHGVERSION%%
-CATEGORIES=	x11-themes
+CATEGORIES=	x11
 
 MAINTAINER=	jmaloney@furybsd.org
 COMMENT=	FuryBSD XFCE settings
