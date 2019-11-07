@@ -2,10 +2,22 @@
 # Helper script which will create the port / distfiles
 # from a checked out git repo
 
-# Get list of ports from parent scripts
+if [ -z "$1" ] ; then
+  echo "Please provide port path"
+  echo "For example x11-themes/furybsd-wallpapers"
+  exit 1
+fi
+
+# Only run as superuser
+if [ "$(id -u)" != "0" ]; then
+  echo "This script must be run as root" 1>&2
+  exit 1
+fi
+
+# Deal with input for script below
 port=$1
 dfile=`echo $1 | cut -d'/' -f2-`
-topdir=`ls -d */`
+topdir=`echo $1 | cut -d'/' -f1-`
 
 # Cleanup previous copies of ports overlay
 rm -rf /usr/ports/${port}/ || true
