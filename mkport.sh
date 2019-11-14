@@ -24,7 +24,11 @@ rm -rf /usr/ports/${port}/ || true
 cp -R ${topdir} /usr/ports/${topdir}
 
 # Get the GIT tag
-ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
+if [ $1="sysutils/furybsd-dsbdriverd" ]; then
+  echo "Skipping git ls for forked repo"
+else
+  ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
+fi
 
 # Get the version
 if [ -e "version" ] ; then
