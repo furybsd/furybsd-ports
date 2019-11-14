@@ -23,13 +23,6 @@ topdir=`echo $1 | cut -d'/' -f1-`
 rm -rf /usr/ports/${port}/ || true
 cp -R ${topdir} /usr/ports/${topdir}
 
-# Get the GIT tag
-if [ $1="sysutils/furybsd-dsbdriverd" ]; then
-  echo "Skipping git ls for forked repo"
-else
-  ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
-fi
-
 # Get the version
 if [ -e "version" ] ; then
   verTag=$(cat version)
@@ -40,6 +33,17 @@ fi
 # Set the version numbers
 sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
 sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
+
+# Get the GIT tag
+if [ $1="sysutils/furybsd-dsbdriverd" ]; then
+  echo "Skipping git ls for forked repo"
+else
+  # Grab the tag from github using git ls
+  ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
+  # Set the version numbers
+  sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
+  sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
+fi
 
 # Create the makesums / distinfo file
 cd "/usr/ports/${port}"
