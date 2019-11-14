@@ -32,21 +32,12 @@ fi
 
 # Set the version numbers
 sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
-sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
 
 # Get the GIT tag
 if [ $1 = "sysutils/furybsd-dsbdriverd" ]; then
-  echo "Skipping git ls for forked repo"
+  echo "skipping git ls for forked repo"
 else
-  # Grab the tag from github using git ls
-  echo "grabbing tag from git"
-  port=$1
-  dfile=`echo $1 | cut -d'/' -f2-`
-  topdir=`echo $1 | cut -d'/' -f1-`
   ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
-  echo "${ghtag}"
-  # Set the version numbers
-  sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
   sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
 fi
 
