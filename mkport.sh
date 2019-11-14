@@ -40,6 +40,9 @@ if [ $1 = "sysutils/furybsd-dsbdriverd" ]; then
 else
   # Grab the tag from github using git ls
   echo "grabbing tag from git"
+  port=$1
+  dfile=`echo $1 | cut -d'/' -f2-`
+  topdir=`echo $1 | cut -d'/' -f1-`
   ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
   echo "${ghtag}"
   # Set the version numbers
