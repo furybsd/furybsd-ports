@@ -3,7 +3,8 @@
 # Added master port for testing with FuryBSD J.M.
 
 PORTNAME=	dsbdriverd
-PORTVERSION=	%%CHGVERSION%%
+PORTVERSION=	0.6.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	mk@nic-nac-project.org
