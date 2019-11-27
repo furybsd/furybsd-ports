@@ -51,6 +51,9 @@ cp ${ports}/sysutils/furybsd-dsbdriverd/work/pkg/* ${repodir}
 cd ${cache}/furybsd-ports-master && ./mkport.sh x11-drivers/furybsd-xorg-tool
 cd ${ports}/x11-drivers/furybsd-xorg-tool && make package
 cp ${ports}/x11-drivers/furybsd-xorg-tool/work/pkg/* ${repodir}
+cd ${cache}/furybsd-ports-master && ./mkport.sh sysutils/furybsd-update
+cd ${ports}/sysutils/furybsd-update && make package
+cp ${ports}/sysutls/furybsd-update/work/pkg/* ${repodir}
 case $desktop in
   'kde')
     echo "no settings port yet"
@@ -62,6 +65,9 @@ case $desktop in
     cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-xfce-settings
     cd ${ports}/x11/furybsd-xfce-settings && make package
     cp ${ports}/x11/furybsd-xfce-settings/work/pkg/* ${repodir}
+    cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-xfce-desktop
+    cd ${ports}/x11/furybsd-xfce-desktop && make package
+    cp ${ports}/x11/furybsd-xfce-desktop/work/pkg/* ${repodir}
     ;;
 esac
 
