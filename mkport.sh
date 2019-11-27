@@ -37,6 +37,12 @@ case $1 in
   'x11/furybsd-xfce-desktop')
     echo "skipping git ls for this port"
     ;;
+  'x11/furybsd-kde-desktop')
+    echo "skipping git ls for this port"
+    ;;
+  'x11/furybsd-gnome-desktop')
+    echo "skipping git ls for this port"
+    ;;
   'sysutils/furybsd-dsbdriverd')
     echo "skipping git ls for this port"
     ;;
@@ -64,6 +70,12 @@ fi
 
 case $1 in
   'x11/furybsd-xfce-desktop')
+    echo "skipping plist for this port"
+    ;;
+  'x11/furybsd-kde-desktop')
+    echo "skipping plist for this port"
+    ;;
+  'x11/furybsd-gnome-desktop')
     echo "skipping plist for this port"
     ;;
   *)

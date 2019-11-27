@@ -1,21 +1,20 @@
 # $FreeBSD$
 
-PORTNAME=	furybsd-xfce-desktop
+PORTNAME=	furybsd-kde-desktop
 PORTVERSION=	%%CHGVERSION%%
 CATEGORIES?=	x11
 
 MAINTAINER=	jmaloney@furybsd.org
-COMMENT?=	"meta-port" for the XFCE integrated FuryBSD desktop
+COMMENT?=	"meta-port" for the KDE integrated FuryBSD desktop
 
 RUN_DEPENDS?=	${LOCALBASE}/libexec/dsbdriverd:sysutils/furybsd-dsbdriverd \
 		furybsd-update:sysutils/furybsd-update \
 		furybsd-xorg-tool:x11-drivers/furybsd-xorg-tool \
-		${LOCALBASE}/share/backgrounds/furybsd/fury_road.png:x11-themes/furybsd-wallpapers \
-		${LOCALBASE}/share/furybsd/xfce-settings/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml:x11/furybsd-xfce-settings
+		${LOCALBASE}/share/backgrounds/furybsd/fury_road.png:x11-themes/furybsd-wallpapers
 
 
 CONFLICTS?=	furybsd-gnome-desktop-[0-9]* \
-		furybsd-kde-desktop-[0-9]*
+		furybsd-xfce-desktop-[0-9]*
 
 USES=		metaport
 
