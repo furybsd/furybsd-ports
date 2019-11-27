@@ -5,3 +5,53 @@ if [ "$(id -u)" != "0" ]; then
   echo "This script must be run as root" 1>&2
   exit 1
 fi
+
+if [ -d "${ports}/Mk" ] ; then
+  portsnap fetch update
+else
+  portsnap fetch extract
+fi
+
+if [ -f "/usr/local/sbin/lightdm" ] ; then
+  export DESKTOP="xfce"
+fi
+if [ -f "/usr/local/sbin/gdm" ] ; then
+  export DESKTOP="gnome"
+fi
+if [ -f "/usr/local/bin/sddm" ] ; then
+  export DESKTOP="kde"
+fi
+
+cache="/tmp/furybsd-ports"
+ports="/usr/ports"
+
+if [ -d "${cache}" ] ; then
+  rm -rf $[cache}
+else 
+  mkdir ${cache}
+fi 
+
+cd ${cache} && fetch https://github.com/furybsd/furybsd-ports/archive/master.zip
+cd ${cache} && unzip master.zip
+cd ${cache}/furybsd-ports-master && ./mkport.sh x11-themes/furybsd-wallpapers
+cd ${ports}/x11-themes/furybsd-wallpapers && make package
+cp ${ports}/x11-themes/furybsd-wallpapers/work/pkg/* ${uzip}
+cd ${cache}/furybsd-ports-master && ./mkport.sh sysutils/furybsd-dsbdriverd
+cd ${ports}/sysutils/furybsd-dsbdriverd && make package
+cp ${ports}/sysutils/furybsd-dsbdriverd/work/pkg/* ${uzip}
+cd ${cache}/furybsd-ports-master && ./mkport.sh x11-drivers/furybsd-xorg-tool
+cd ${ports}/x11-drivers/furybsd-xorg-tool && make package
+cp ${ports}/x11-drivers/furybsd-xorg-tool/work/pkg/* ${uzip}
+case $desktop in
+  'kde')
+    echo "no settings port yet"
+    ;;
+  'gnome')
+    echo "no settings port yet"
+    ;;
+  *)
+    cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-xfce-settings
+    cd ${ports}/x11/furybsd-xfce-settings && make package
+    cp ${ports}/x11/furybsd-xfce-settings/work/pkg/* ${uzip}
+    ;;
+esac
