@@ -56,10 +56,15 @@ cd ${ports}/sysutils/furybsd-update && make package
 cp ${ports}/sysutls/furybsd-update/work/pkg/* ${repodir}
 case $desktop in
   'kde')
-    echo "no settings port yet"
+    cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-kde-desktop
+    cd ${ports}/x11/furybsd-kde-desktop && make package
+    cp ${ports}/x11/furybsd-kde-desktop/work/pkg/* ${repodir}
+
     ;;
   'gnome')
-    echo "no settings port yet"
+    cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-gnome-desktop
+    cd ${ports}/x11/furybsd-gnome-desktop && make package
+    cp ${ports}/x11/furybsd-gnome-desktop/work/pkg/* ${repodir}
     ;;
   *)
     cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-xfce-settings
