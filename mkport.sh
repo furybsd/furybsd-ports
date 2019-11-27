@@ -33,13 +33,18 @@ fi
 # Set the version numbers
 sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
 
-# Get the GIT tag
-if [ $1 = "sysutils/furybsd-dsbdriverd" ]; then
-  echo "skipping git ls for forked repo"
-else
-  ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
-  sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
-fi
+case $1 in
+  'x11/furybsd-xfce-desktop')
+    echo "skipping git ls for this port"
+    ;;
+  'sysutils/furybsd-dsbdriverd')
+    echo "skipping git ls for this port"
+    ;;
+  *)
+    ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
+    sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
+    ;;
+esac
 
 # Create the makesums / distinfo file
 cd "/usr/ports/${port}"
@@ -57,16 +62,24 @@ if [ $? -ne 0 ] ; then
   exit 1
 fi
 
-
-# Create the package plist
-cd "/usr/ports/${port}"
-make makeplist > pkg-plist
-if [ $? -ne 0 ] ; then
-  echo "Failed makeplist"
-  exit 1
-fi
-sed 1,/you/d pkg-plist >> pkg-plist.fixed
-mv pkg-plist.fixed pkg-plist
+case $1 in
+  'x11/furybsd-xfce-desktop')
+    echo "skipping plist for this port"
+    ;;
+  *)
+    # Create the package plist
+    port=$1
+    echo "making plist for ${port}"
+    cd "/usr/ports/${port}"
+    make makeplist > pkg-plist
+    if [ $? -ne 0 ] ; then
+      echo "Failed makeplist"
+      exit 1
+    fi
+    sed 1,/you/d pkg-plist >> pkg-plist.fixed
+    mv pkg-plist.fixed pkg-plist
+    ;;
+esac
 
 make clean
 if [ $? -ne 0 ] ; then

@@ -17,5 +17,5 @@ GH_TAGNAME=	%%GHTAG%%
 NO_BUILD=	yes
 
 do-install:
-        ${CP} -PR ${WRKSRC}/bin/* ${STAGEDIR}${PREFIX}/bin
+	${CP} -PR ${WRKSRC}/bin/* ${STAGEDIR}${PREFIX}/bin
 .include <bsd.port.mk>
