@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/bin/bash
 # Helper script which will create the port / distfiles
 # from a checked out git repo
 
@@ -32,10 +32,17 @@ fi
 if [ -f "/usr/local/furybsd/tag" ] ; then
   verTag=$(cat /usr/local/furybsd/tag)
 else
-  getTag=$(date '+%Y%m%d%H%M')
-  echo "${getTag}" > /usr/local/furybsd/version
-  verTag=$(cat /usr/local/furybsd/version)
+  gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
+  getdate=$(date '+%Y%m%d')
+  buildnum=$(echo ${getdate}01)
+  export getTag=$(echo ${buildnum})
+  if [ "${gitcheck}" -eq "${buildnum}" ]; then
+    let "getTag=gitcheck+1"
+  fi
 fi
+
+echo "${getTag}" > /usr/local/furybsd/version
+verTag=$(cat /usr/local/furybsd/version)
 
 # Set the version numbers
 sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
