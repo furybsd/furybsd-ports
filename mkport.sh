@@ -54,8 +54,8 @@ case $1 in
     echo "skipping git ls for this port"
     ;;
   *)
-  if [ -f "/usr/local/furybsd/version" ] ; then
-    ghtag=$(cat /usr/local/furybsd/version)
+  if [ -f "/usr/local/furybsd/tag" ] ; then
+    ghtag=$(cat /usr/local/furybsd/tag)
     sed -i '' "s|%%GHTAG%%|${ghtag}|g" /usr/ports/${port}/Makefile
   else
     ghtag=`git ls-remote https://github.com/furybsd/${dfile} HEAD | awk '{ print $1}'`
