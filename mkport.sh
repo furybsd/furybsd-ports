@@ -24,8 +24,8 @@ rm -rf /usr/ports/${port}/ || true
 cp -R ${topdir} /usr/ports/${topdir}
 
 # Get the version
-if [ -e "version" ] ; then
-  verTag=$(cat version)
+if [ -e "tag" ] ; then
+  verTag=$(cat /usr/local/furybsd/version)
 else
   verTag=$(date '+%Y%m%d%H%M')
 fi
