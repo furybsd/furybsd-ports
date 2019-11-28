@@ -23,11 +23,18 @@ topdir=`echo $1 | cut -d'/' -f1-`
 rm -rf /usr/ports/${port}/ || true
 cp -R ${topdir} /usr/ports/${topdir}
 
+# Create FuryBSD work folder if it does not exist
+if [ ! -d "/usr/local/furybsd" ] ; then
+  mkdir /usr/local/furybsd
+fi
+
 # Get the version
 if [ -f "/usr/local/furybsd/tag" ] ; then
   verTag=$(cat /usr/local/furybsd/tag)
 else
-  verTag=$(date '+%Y%m%d%H%M')
+  getTag=$(date '+%Y%m%d%H%M')
+  echo "${getTag}" > /usr/local/furybsd/version
+  verTag=$(cat /usr/local/furybsd/version)
 fi
 
 # Set the version numbers
