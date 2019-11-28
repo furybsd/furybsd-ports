@@ -8,6 +8,20 @@ fi
 
 cwd="`realpath | sed 's|/scripts||g'`"
 
-sh ${cwd}/furybsd-make-ports
+pkgcheck=$(pkg info furybsd-update | grep Version | awk '{ print $3 }')
+gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
 
-pkg upgrade -r furybsd -fy
+echo "pkg version is ${pkgcheck}"
+echo "git version is ${gitcheck}"
+
+if [ "${gitcheck}" -eq "${pkgcheck}" ]; then
+  echo "FuryBSD ports are up to date"
+  exit 0
+fi
+if [ "${gitcheck}" -gt "${pkgcheck}" ]; then
+  sh ${cwd}/furybsd-make-ports
+  pkg upgrade -r furybsd -fy
+else
+  echo "FuryBSD ports are up to date"
+  exit 0
+fi
