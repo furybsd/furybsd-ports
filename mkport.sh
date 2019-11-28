@@ -36,6 +36,10 @@ export getTag=$(echo ${buildnum})
 if [ "${gitcheck}" -eq "${buildnum}" ]; then
   let "getTag=gitcheck+1"
 fi
+if [ "${buildnum}" -lt "${gitcheck}" ]; then
+  echo "${gitcheck} - ${buildnum}" | bc
+  let "getTag=gitcheck+1"
+fi
 echo "${getTag}" > /usr/local/furybsd/version
 export verTag=$(cat /usr/local/furybsd/version)
 
