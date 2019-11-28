@@ -28,21 +28,22 @@ if [ ! -d "/usr/local/furybsd" ] ; then
   mkdir /usr/local/furybsd
 fi
 
-# Get the version
-if [ -f "/usr/local/furybsd/tag" ] ; then
-  verTag=$(cat /usr/local/furybsd/tag)
-else
-  gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
-  getdate=$(date '+%Y%m%d')
-  buildnum=$(echo ${getdate}01)
-  export getTag=$(echo ${buildnum})
-  if [ "${gitcheck}" -eq "${buildnum}" ]; then
-    let "getTag=gitcheck+1"
-  fi
+# Dynamically create a version newer than the latest tag
+gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
+getdate=$(date '+%Y%m%d')
+buildnum=$(echo ${getdate}01)
+export getTag=$(echo ${buildnum})
+if [ "${gitcheck}" -eq "${buildnum}" ]; then
+  let "getTag=gitcheck+1"
 fi
-
 echo "${getTag}" > /usr/local/furybsd/version
-verTag=$(cat /usr/local/furybsd/version)
+export verTag=$(cat /usr/local/furybsd/version)
+
+# Set the version instead of tag is used
+if [ -f "/usr/local/furybsd/tag" ] ; then
+  rm /usr/local/furybsd/version
+  export verTag=$(cat /usr/local/furybsd/tag) 
+fi
 
 # Set the version numbers
 sed -i '' "s|%%CHGVERSION%%|${verTag}|g" /usr/ports/${port}/Makefile
