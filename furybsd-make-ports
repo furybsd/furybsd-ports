@@ -33,10 +33,10 @@ if [ ! -d "${cache}" ] ; then
 fi
 
 if [ -d "${repodir}" ] ; then
-  rm -rf $[repodir}
-else
-  mkdir ${repodir}
+  rm -rf ${repodir}
 fi
+
+mkdir ${repodir}
 
 cd ${cache} && rm master.zip
 rm -rf ${cache}/furybsd-ports-master
