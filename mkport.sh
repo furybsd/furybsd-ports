@@ -34,9 +34,11 @@ getdate=$(date '+%Y%m%d')
 buildnum=$(echo ${getdate}01)
 export getTag=$(echo ${buildnum})
 if [ "${gitcheck}" -eq "${buildnum}" ]; then
+  echo "Build number equal to git tag"
   let "getTag=gitcheck+1"
 fi
 if [ "${buildnum}" -lt "${gitcheck}" ]; then
+  echo "Build number less than git tag"
   bcheck=$(echo "${gitcheck} - ${buildnum}" | bc)
   let "getTag=gitcheck+1+${bcheck}"
 fi
