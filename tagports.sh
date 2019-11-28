@@ -17,12 +17,12 @@ repodir="/tmp/furybsd-tag"
 rm -rf ${repodir}
 mkdir -p ${repodir}
 
-if [ ! -f "/usr/local/furybsd/tag" ] ; then
-  echo "FuryBSD must be built with tag first"
+if [ ! -f "/usr/local/furybsd/version" ] ; then
+  echo "FuryBSD ports must be built first"
   exit 1
 fi
 
-version=`cat /usr/local/furybsd/tag`
+version=`cat /usr/local/furybsd/version`
 
 git clone git@github.com:furybsd/furybsd-update.git ${repodir}/furybsd-update
 git clone git@github.com:furybsd/furybsd-xorg-tool.git ${repodir}/furybsd-xorg-tool
