@@ -9,7 +9,7 @@ fi
 cwd="`realpath | sed 's|/scripts||g'`"
 
 pkgcheck=$(pkg info furybsd-update | grep Version | awk '{ print $3 }')
-gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
+gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | tail -n 1)
 
 echo "pkg version is ${pkgcheck}"
 echo "git version is ${gitcheck}"
