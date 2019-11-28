@@ -53,7 +53,7 @@ cd ${ports}/x11-drivers/furybsd-xorg-tool && make package
 cp ${ports}/x11-drivers/furybsd-xorg-tool/work/pkg/* ${repodir}
 cd ${cache}/furybsd-ports-master && ./mkport.sh sysutils/furybsd-update
 cd ${ports}/sysutils/furybsd-update && make package
-cp ${ports}/sysutls/furybsd-update/work/pkg/* ${repodir}
+cp ${ports}/sysutils/furybsd-update/work/pkg/* ${repodir}
 case $desktop in
   'kde')
     cd ${cache}/furybsd-ports-master && ./mkport.sh x11/furybsd-kde-desktop
