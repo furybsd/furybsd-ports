@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case "$2" in
+    POST-INSTALL)
+    if [ ! -f "/usr/local/bin/git ] ; then pkg install git-lite ; fi
+    ;;
+esac
+
+exit 0
