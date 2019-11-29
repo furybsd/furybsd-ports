@@ -12,6 +12,12 @@ else
   portsnap fetch extract
 fi
 
+if [ -d "/usr/ports/Mk" ] ; then
+  portsnap fetch update
+else
+  portsnap fetch extract
+fi
+
 if [ -f "/usr/local/sbin/lightdm" ] ; then
   export DESKTOP="xfce"
 fi
