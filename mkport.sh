@@ -29,19 +29,17 @@ if [ ! -d "/usr/local/furybsd" ] ; then
 fi
 
 # Dynamically create a version newer than the latest tag
-gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
+gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | sed 's/[^a-zA-Z0-9]//g' | tail -n 1)
 getdate=$(date '+%Y%m%d')
 buildnum=$(echo ${getdate}01)
+echo "gitcheck is ${gitcheck}"
+echo "buildnum is ${buildnum}"
+until [  ${buildnum} -gt ${gitcheck} ]; do
+    #echo $buildnum $buildnum
+    let buildnum+=1
+done
+echo "buildnum is ${buildnum}"
 export getTag=$(echo ${buildnum})
-if [ "${gitcheck}" -eq "${buildnum}" ]; then
-  echo "Build number equal to git tag"
-  let "getTag=gitcheck+1"
-fi
-if [ "${buildnum}" -lt "${gitcheck}" ]; then
-  echo "Build number less than git tag"
-  bcheck=$(echo "${gitcheck} - ${buildnum}" | bc)
-  let "getTag=gitcheck+1+${bcheck}"
-fi
 echo "${getTag}" > /usr/local/furybsd/version
 export verTag=$(cat /usr/local/furybsd/version)
 
