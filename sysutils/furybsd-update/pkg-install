@@ -2,7 +2,7 @@
 
 case "$2" in
     POST-INSTALL)
-    if [ ! -f "/usr/local/bin/git ] ; then pkg install git-lite ; fi
+    if [ ! -f "/usr/local/bin/git" ] ; then pkg install -fy git-lite ; fi
     ;;
 esac
 
