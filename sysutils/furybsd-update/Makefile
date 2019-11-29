@@ -7,6 +7,9 @@ CATEGORIES=	x11
 MAINTAINER=	jmaloney@furybsd.org
 COMMENT=	FuryBSD update bootstrap
 
+RUN_DEPENDS?=	git:devel/git \
+		bash:shells/bash
+
 LICENSE=	BSD
 
 USE_GITHUB=	yes
