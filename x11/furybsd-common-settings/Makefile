@@ -17,6 +17,6 @@ GH_TAGNAME=	%%GHTAG%%
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/share/furybsd/common-settings/etc/xdg
-	${CP} -R   ${WRKSRC}/etc/xdg/* ${STAGEDIR}/${PREFIX}/share/furybsd/common-settings/etc/xdg
+	${MKDIR} ${STAGEDIR}/${PREFIX}/share/furybsd/common-settings/etc
+	${CP} -R   ${WRKSRC}/etc/* ${STAGEDIR}/${PREFIX}/share/furybsd/common-settings/etc
 .include <bsd.port.mk>
