@@ -11,6 +11,7 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/dsbdriverd:sysutils/furybsd-dsbdriverd \
 		furybsd-update:sysutils/furybsd-update \
 		furybsd-xorg-tool:x11-drivers/furybsd-xorg-tool \
 		${LOCALBASE}/share/backgrounds/furybsd/fury_road.png:x11-themes/furybsd-wallpapers \
+		${LOCALBASE}/share/furybsd/common-settings/etc/doas.conf:x11/furybsd-common-settings \
 		${LOCALBASE}/share/furybsd/xfce-settings/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml:x11/furybsd-xfce-settings
 
 

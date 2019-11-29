@@ -10,6 +10,7 @@ COMMENT?=	"meta-port" for the KDE integrated FuryBSD desktop
 RUN_DEPENDS?=	${LOCALBASE}/libexec/dsbdriverd:sysutils/furybsd-dsbdriverd \
 		furybsd-update:sysutils/furybsd-update \
 		furybsd-xorg-tool:x11-drivers/furybsd-xorg-tool \
+		${LOCALBASE}/share/furybsd/common-settings/etc/doas.conf:x11/furybsd-common-settings \
 		${LOCALBASE}/share/backgrounds/furybsd/fury_road.png:x11-themes/furybsd-wallpapers
 
 
