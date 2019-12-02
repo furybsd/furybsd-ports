@@ -107,7 +107,7 @@ case $1 in
     port=$1
     echo "making plist for ${port}"
     cd "/usr/ports/${port}"
-    make makeplist > pkg-plist
+    make -DBATCH makeplist > pkg-plist
     if [ $? -ne 0 ] ; then
       echo "Failed makeplist"
       exit 1
