@@ -43,7 +43,7 @@ export getTag=$(echo ${buildnum})
 echo "${getTag}" > /usr/local/furybsd/version
 export verTag=$(cat /usr/local/furybsd/version)
 
-# Set the version instead of tag is used
+# Set the version instead if tag is used
 if [ -f "/usr/local/furybsd/tag" ] ; then
   rm /usr/local/furybsd/version
   export verTag=$(cat /usr/local/furybsd/tag) 

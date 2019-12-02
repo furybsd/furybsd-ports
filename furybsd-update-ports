@@ -18,7 +18,13 @@ if [ "${gitcheck}" -eq "${pkgcheck}" ]; then
   echo "FuryBSD ports are up to date"
   exit 0
 fi
+
+if [ ! -d "/usr/local/furybsd" ] ; then
+  mkdir /usr/local/furybsd
+fi
+
 if [ "${gitcheck}" -gt "${pkgcheck}" ]; then
+  echo ${gitcheck} > /usr/local/furybsd/tag
   sh ${cwd}/furybsd-make-ports
   pkg upgrade -r furybsd -fy
 else
