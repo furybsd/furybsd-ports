@@ -62,9 +62,6 @@ case $1 in
   'x11/furybsd-gnome-desktop')
     echo "skipping git ls for this port"
     ;;
-  'sysutils/furybsd-dsbdriverd')
-    echo "skipping git ls for this port"
-    ;;
   *)
   if [ -f "/usr/local/furybsd/tag" ] ; then
     ghtag=$(cat /usr/local/furybsd/tag)
