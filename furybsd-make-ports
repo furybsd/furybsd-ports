@@ -6,6 +6,11 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
+# Cleanup MOVED and REMOVED furybsd ports first
+if [ -d "/usr/ports/sysutils/furybsd-dsbdriverd" ] ; then
+  rm -rf /usr/ports/sysutils/furybsd-dsbdriverd
+fi
+
 if [ -f "/var/db/portsnap/INDEX" ] ; then
   portsnap fetch update
 else
