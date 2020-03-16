@@ -2,7 +2,7 @@
 
 PORTNAME=	furybsd-xorg-tool
 PORTVERSION=	%%CHGVERSION%%
-CATEGORIES=	x11
+CATEGORIES=	x11-drivers
 
 MAINTAINER=	jmaloney@furybsd.org
 COMMENT=	FuryBSD Xorg Tool
