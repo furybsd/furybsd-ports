@@ -3,6 +3,9 @@
 case "$2" in
     POST-INSTALL)
     # copy xdg
+    if [ ! -d "/usr/local/share/furybsd/xfce-settings/etc/xdg/" ] ; then
+      mkdir /usr/local/share/furybsd/xfce-settings/etc/xdg/
+    fi
     cp -af /usr/local/share/furybsd/xfce-settings/etc/xdg/*   /usr/local/etc/xdg/
     ;;
 esac
