@@ -7,10 +7,6 @@ CATEGORIES=	x11
 MAINTAINER=	jmaloney@furybsd.org
 COMMENT=	FuryBSD Xorg Tool
 
-RUN_DEPENDS?=   bash:shells/bash \
-		xterm:x11/xterm \
-		zenity:x11/zenity
-
 LICENSE=	BSD
 
 USE_GITHUB=	yes
